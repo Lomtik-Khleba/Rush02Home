@@ -23,3 +23,11 @@ int	number_check(char *num_str)
 	}
 	return (1);
 }
+
+void	display_error(int status)
+{
+	if (status == -1)
+		write(1, "Error\n", 6);
+	else if (status == -2)
+		write(1, "Dict error\n", 11);
+}

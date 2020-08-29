@@ -12,9 +12,9 @@
 
 NAME	= rush-02
 
-SRCS	= srcs/
+SRCS	= srcs/*.c
 
-CC		= gcc
+CC	= gcc
 
 CFLAGS	= -Wall -Wextra -Werror
 

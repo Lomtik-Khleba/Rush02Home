@@ -239,11 +239,9 @@ int	convert(t_dict **ents, char *input_num)
 	if (is_zero(input_num, ents))
 		return (1);
 	count_tr = parse_tr(input_num, &begin);
-	printf("%d\n", count_tr);
 	if (number_check(input_num) == -1)
 		return (-1);
 	temp = dict_search(ents, count_tr);
-	printf("%s\n", temp);
 	while (count_tr != 0)
 	{
 		if (!(temp = dict_search(ents, count_tr)))

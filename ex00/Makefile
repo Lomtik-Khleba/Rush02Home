@@ -6,7 +6,7 @@
 #    By: rbarber <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/29 10:39:34 by rbarber           #+#    #+#              #
-#    Updated: 2020/08/29 10:42:49 by rbarber          ###   ########.fr        #
+#    Updated: 2020/08/30 15:18:25 by rbarber          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,3 +28,5 @@ clean:
 
 fclean:	clean
 			/bin/rm -f ${NAME}
+
+re:		fclean all

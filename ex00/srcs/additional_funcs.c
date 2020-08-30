@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args.c                                       :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbarber <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/08/29 10:56:50 by rbarber           #+#    #+#             */
-/*   Updated: 2020/08/29 11:16:43 by rbarber          ###   ########.fr       */
+/*   Created: 2020/08/30 15:21:14 by rbarber           #+#    #+#             */
+/*   Updated: 2020/08/30 17:20:10 by rbarber          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Headers.h"
+#include "headers.h"
 
-int	ft_strcmp(char *s1, char *s2)
+int		ft_strcmp(char *s1, char *s2)
 {
 	int i;
 
@@ -20,35 +20,12 @@ int	ft_strcmp(char *s1, char *s2)
 	while (s1[i] != '\0' && s2[i] != '\0'
 			&& s1[i] == s2[i])
 	{
-		i++;	
+		i++;
 	}
 	return (s1[i] - s2[i]);
 }
 
-/*void	is_zero(char *num_str, t_dict **dict)
-{
-	int i;
-
-	i = 0;
-	while(num_str[i])
-	{
-		if (num_str[i] != '0')
-			return ;
-		i++;
-	}
-	i = 0;
-	while(dict[i])
-	{
-		if (dict[i]->num_str[0] == '0')
-		{
-			write(1, dict[i]->word, len(dict[i]->word));
-			break;
-		}
-	}
-	num_str[0] = '\0';
-}*/
-
-int	number_check(char *num_str)
+int		number_check(char *num_str)
 {
 	int i;
 
@@ -59,13 +36,25 @@ int	number_check(char *num_str)
 			return (-1);
 		i++;
 	}
+	if (num_str[0] == '\0')
+		return (-1);
 	return (1);
 }
 
 void	display_error(int status)
 {
 	if (status == -1)
-		write(1, "Error", 6);
+		write(1, "Error\n", 6);
 	else if (status == -2)
-		write(1, "Dict error", 11);
+		write(1, "Dict error\n", 11);
+}
+
+int		len(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

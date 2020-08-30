@@ -6,23 +6,13 @@
 /*   By: rbarber <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/29 11:20:05 by rbarber           #+#    #+#             */
-/*   Updated: 2020/08/29 12:12:36 by rbarber          ###   ########.fr       */
+/*   Updated: 2020/08/30 16:46:32 by rbarber          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Headers.h"
+#include "headers.h"
 
-int		len(char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
-
-int	parse_tr(char *input_num, int *begin)
+int		parse_tr(char *input_num, int *begin)
 {
 	int count_tr;
 	int i;
@@ -42,7 +32,7 @@ int	parse_tr(char *input_num, int *begin)
 	if (*begin == 0)
 	{
 		*begin = 3;
-		return(count_tr);
+		return (count_tr);
 	}
 	return (count_tr + 1);
 }
@@ -75,129 +65,6 @@ char	*dict_search(t_dict **ents, int count_tr)
 	return (0);
 }
 
-void	display_num1(char *num, t_dict **ents, int it)
-{
-	int i;
-
-	i = 0;
-	while(ents[i])
-	{
-		if (ents[i]->num_str[0] == num[it])
-		{
-			if (ents[i]->num_str[1] == '\0')
-			{
-				write(1, ents[i]->word, len(ents[i]->word));
-				break;
-			}
-		}
-		i++;
-	}
-}
-
-void	display_num2(char *num, t_dict **ents, int it)
-{
-	int i;
-
-	i = 0;
-	while (ents[i])
-	{
-		if (ents[i]->num_str[0] == '1')
-		{
-			if (ents[i]->num_str[1] == num[it + 1])
-			{
-				write(1, ents[i]->word, len(ents[i]->word));
-				break;
-			}
-		}
-		i++;
-	}
-}
-
-void	display_num3(char *num, t_dict **ents, int it)
-{
-	int i;
-
-	i = -1;
-	while (ents[++i])
-        {
-                if (ents[i]->num_str[0] == num[it])
-                {
-                        if (ents[i]->num_str[1] == '0')
-                        {
-                                write(1, ents[i]->word, len(ents[i]->word));
-				break;
-                        }
-                }
-        }
-	i = -1;
-	while (ents[++i])
-	{
-		if ((ents[i]->num_str[0] == num[it + 1]) && num[it + 1] != '0')
-		{
-			if (ents[i]->num_str[1] == '\0')
-			{
-				write(1, " ", 1);
-				write(1, ents[i]->word, len(ents[i]->word));
-				break;
-			}
-		}
-	}
-}
-
-void	display_num4(char *num, t_dict **ents, int it)
-{
-	int i;
-
-	i = -1;
-	while (ents[++i])
-	{
-		if (ents[i]->num_str[0] == num[it])
-			if (ents[i]->num_str[1] == '\0')
-			{
-				write(1, ents[i]->word, len(ents[i]->word));
-				write(1, " ", 1);
-				break;
-			}
-	}
-	i = -1;
-	while (ents[++i])
-	{
-		if (!(ft_strcmp(ents[i]->num_str, "100")))
-		{
-			write(1, ents[i]->word, len(ents[i]->word));
-			break;
-		}
-	}
-}
-
-void	display_num(char *num, int begin, t_dict **ents, int it)
-{
-	if (begin == 1)
-	{
-		display_num1(num, ents, it);
-		write(1, " ", 1);
-	}
-	else if (begin == 2 && num[it] == '1')
-	{
-		display_num2(num, ents, it);
-		write(1, " ", 1);
-	}
-	else if (begin == 2)
-	{
-		display_num3(num, ents, it);
-		write(1, " ", 1);
-	}
-	else if (begin == 3)
-	{
-		if (num[it] != '0')
-		{
-			display_num4(num, ents, it);
-			write(1, " ", 1);
-		}
-		display_num(num, 2, ents, it + 1); 
-	}
-}
-
 void	display_word(char *temp, int begin, int count_tr)
 {
 	if (count_tr == 0)
@@ -209,30 +76,30 @@ void	display_word(char *temp, int begin, int count_tr)
 	}
 }
 
-int	is_zero(char *num_str, t_dict **dict)
+int		is_zero(char *num_str, t_dict **dict)
 {
 	int i;
 
-        i = 0;
-        if (num_str[0] != '0')
+	i = 0;
+	if (num_str[0] != '0')
 		return (0);
-        while(dict[i])
-        {
-                if (dict[i]->num_str[0] == '0')
-                {
-                        write(1, dict[i]->word, len(dict[i]->word));
-                        break;
-                }
-        }
+	while (dict[i])
+	{
+		if (dict[i]->num_str[0] == '0')
+		{
+			write(1, dict[i]->word, len(dict[i]->word));
+			break ;
+		}
+	}
 	return (1);
 }
 
-int	convert(t_dict **ents, char *input_num)
+int		convert(t_dict **ents, char *input_num)
 {
-	int	count_tr;
+	int		count_tr;
 	char	*temp;
-	int	begin;
-	int	iterator;
+	int		begin;
+	int		iterator;
 
 	iterator = 0;
 	begin = 0;
